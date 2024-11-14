@@ -3,13 +3,14 @@ LIB			= includes/libft/libft.a
 CFLAGS		= -Wall -Werror -Wextra
 # CFLAGS = -Wall -Werror -Wextra -g3
 CC			= cc
-VPATH		= ./srcs/:./srcs/db:./srcs/mem_utils
+VPATH		= ./srcs/:./srcs/db:./srcs/mem_utils:./srcs/mutex
 LIBFT_PATH 	= ./includes/libft
 INC = -Iincludes/
 
 SRC_FILES	=	main \
-				db_init \
-				cleans exits\
+				db_init utils \
+				cleans exits \
+				mutex mutex_utils \
 
 OBJ	= $(addsuffix .o, $(SRC_FILES))
 

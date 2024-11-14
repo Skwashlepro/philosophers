@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:41:19 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/12 23:15:30 by luctan           ###   ########.fr       */
+/*   Updated: 2024/11/14 19:36:29 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	main(int ac, char **av)
 	{
 		if (db_init(&table, av + 1))
 			exit_error("Invalid arguments : No Philosophers");
-		
+		else
+			printf("else triggered\n");
 	}
 	return (0);
 }

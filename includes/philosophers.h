@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:36:49 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/12 23:11:33 by luctan           ###   ########.fr       */
+/*   Updated: 2024/11/14 22:05:58 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/time.h>
 # include <limits.h>
 # include <stdbool.h>
+# include <errno.h>
 # include "libft/libft.h"
 // Reset
 # define RESET "\033[0m"
@@ -33,6 +34,18 @@
 # define BOLD_MAGENTA "\033[1;35m"
 # define BOLD_CYAN    "\033[1;36m"
 # define BOLD_WHITE   "\033[1;37m"
+
+typedef enum e_opcode
+{
+	LOCK,
+	UNLOCK,
+	INIT,
+	DESTROY,
+	CREATE,
+	JOIN,
+	DETACH,
+}	t_opcode;
+
 
 typedef pthread_mutex_t	t_mutex;
 
@@ -50,8 +63,8 @@ typedef struct s_philo
 	int			meals;
 	bool		full;
 	long		last_meal;
-	t_fork		l_fork;
-	t_fork		r_fork;
+	t_fork		*l_fork;
+	t_fork		*r_fork;
 	pthread_t	thread_id;
 	t_table		*table;
 
@@ -73,5 +86,8 @@ struct s_table
 void	db_free(t_table *table);
 int		db_init(t_table *table, char **av);
 void	exit_error(const char *str);
+void	*my_malloc(size_t bytes);
+void	mutex_handle(t_mutex *mutex, t_opcode code);
+void	philo_init(t_table *table);
 
 #endif
