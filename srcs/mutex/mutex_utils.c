@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 21:36:48 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/14 22:04:58 by luctan           ###   ########.fr       */
+/*   Updated: 2024/11/20 22:15:38 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void	philo_init(t_table *table)
 		philo->full = false;
 		philo->meals = 0;
 		philo->table = table;
-		assign_fork(philo, table->forks, i);
+		assign_forks(philo, table->forks, i);
 	}
 }

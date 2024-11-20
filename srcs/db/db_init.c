@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:53:17 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/14 22:06:26 by luctan           ###   ########.fr       */
+/*   Updated: 2024/11/20 22:27:59 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_db(t_table *table)
 	table->end = false;
 	table->philos = my_malloc(sizeof(t_philo) * table->nbrphil);
 	table->forks = my_malloc(sizeof(t_fork) * table->nbrphil);
+	mutex_handle(&table->table_mtx, INIT);
 	while (++i < table->nbrphil)
 	{
 		mutex_handle(&table->forks[i], INIT);
@@ -42,13 +43,13 @@ static long	ft_atol2(const char *nb)
 	if (nb[i] == '+' || nb[i] == '-')
 	{
 		if (nb[i] == '-')
-			exit_error("Invalid parameters\n");
+			exit_error("Invalid parameters: Negative value are not supported\n");
 		i++;
 	}
 	while (nb[i] && nb[i] >= '0' && nb[i] <= '9')
 	{
 		if (n > (LONG_MAX - (nb[i] - '0')) / 10)
-			exit_error("Invalid parameters\n");
+			exit_error("Invalid parameters: Integer overflow\n");
 		n = n * 10 + (nb[i++] - '0');
 	}
 	return (n * sign);
@@ -66,10 +67,9 @@ static void	atol_struct(t_table *table, char **av)
 		table->nb_eat = -1;
 }
 
-int	db_init(t_table *table, char **av)
+void	db_init(t_table *table, char **av)
 {
-	check_input(av);
 	init_db(table);
 	atol_struct(table, av);
-	return (0);
+	sim_time(table);
 }

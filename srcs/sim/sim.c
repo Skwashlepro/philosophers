@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sim.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 20:41:19 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/20 22:16:06 by luctan           ###   ########.fr       */
+/*   Created: 2024/11/20 22:18:59 by luctan            #+#    #+#             */
+/*   Updated: 2024/11/20 22:41:03 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	main(int ac, char **av)
+void	sim_start(void *data)
 {
-	t_table	table;
+	t_philo	*philo;
 
-	if (ac != 6)
-		exit_error("Invalid number of arguments");
-	else if (ac == 6)
+	philo = (t_philo *)data;
+	wait_threads(philo->table, );
+}
+
+void	sim_init(t_table *table)
+{
+	int	i;
+
+	i = -1;
+	if (!table->nb_eat)
+		return ;
+	else if (table->nbrphil == 1)
+		;
+	else
 	{
-		db_init(&table, av + 1);
-		sim_init(&table);
+		while (++i < table->nbrphil)
+			thread_handle(&table->philos[i].thread_id, sim_start,
+				&table->philos[i], CREATE);
 	}
-	return (0);
+	bool_set(&table->table_mtx, &table->threads_ok, true);
 }
