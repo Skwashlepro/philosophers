@@ -6,18 +6,23 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:18:59 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/20 22:41:03 by luctan           ###   ########.fr       */
+/*   Updated: 2024/11/20 23:06:53 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	wait_thread(t_table *table)
+{
+	while (get_bool())
+}
 
 void	sim_start(void *data)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)data;
-	wait_threads(philo->table, );
+	wait_threads(philo->table);
 }
 
 void	sim_init(t_table *table)
