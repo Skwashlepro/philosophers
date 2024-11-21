@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:36:49 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/20 22:36:23 by luctan           ###   ########.fr       */
+/*   Updated: 2024/11/21 21:08:27 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ typedef enum e_opcode
 	DETACH,
 }	t_opcode;
 
+typedef enum e_time
+{
+	SEC,
+	MS,
+	US,
+}	t_time;
 
 typedef pthread_mutex_t	t_mutex;
 
@@ -81,6 +87,7 @@ struct s_table
 	bool		end;
 	bool		threads_ok;
 	t_mutex		table_mtx;
+	t_mutex		mtx_lock;
 	t_fork		*forks;
 	t_philo		*philos;
 };
@@ -90,10 +97,16 @@ void	db_init(t_table *table, char **av);
 void	exit_error(const char *str);
 void	*my_malloc(size_t bytes);
 void	mutex_handle(t_mutex *mutex, t_opcode code);
+void	thread_handle(pthread_t *thread, void *(*foo)(void *), void *data,
+			t_opcode opcode);
 void	philo_init(t_table *table);
 void	bool_set(t_mutex *mutex, bool *dest, bool value);
 bool	bool_get(t_mutex *mutex, bool *value);
 long	long_get(t_mutex *mutex, long *value);
 long	long_set(t_mutex *mutex, long *dest, long value);
+bool	sim_end(t_table *table);
+void	wait_thread(t_table *table);
+long	timeset(t_time time);
+void	r_usleep(long usec, t_table *table)
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:29:08 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/20 22:36:29 by luctan           ###   ########.fr       */
+/*   Updated: 2024/11/21 20:57:32 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,9 @@ long	long_set(t_mutex *mutex, long *dest, long value)
 	mutex_handle(mutex, LOCK);
 	*dest = value;
 	mutex_handle(mutex, UNLOCK);
+}
+
+bool	sim_end(t_table *table)
+{
+	return (bool_get(&table->table_mtx, &table->end));
 }

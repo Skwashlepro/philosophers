@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:45:56 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/20 22:20:17 by luctan           ###   ########.fr       */
+/*   Updated: 2024/11/21 20:57:51 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,21 @@ void	*my_malloc(size_t bytes)
 	if (!all)
 		exit_error("MEMORY ERROR\n");
 	return (all);
+}
+
+long	timeset(t_time time)
+{
+	struct timeval	tval;
+
+	if (gettimeofday(&tval, NULL))
+		error_exit("getting time of day failed\n");
+	if (SEC == time)
+		return (tval.tv_sec + (tval.tv_usec * 100000));
+	if (MS == time)
+		return ((tval.tv_sec * 1000) + (tval.tv_usec / 1000));
+	if (US == time)
+		return ((tval.tv_sec * 100000) + tval.tv_usec);
+	else
+		exit_error("time enum invalid\n");
+	return (4242);
 }
