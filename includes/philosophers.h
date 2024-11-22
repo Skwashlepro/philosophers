@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:36:49 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/21 21:08:27 by luctan           ###   ########.fr       */
+/*   Updated: 2024/11/21 23:57:05 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,17 @@ typedef enum e_opcode
 	DETACH,
 }	t_opcode;
 
+typedef enum e_stat
+{
+	ASLEEP,
+	EATING,
+	THINKING,
+	DEAD,
+	FULL,
+	FIRST_FORK,
+	SECOND_FORK,
+	}	t_stat;
+
 typedef enum e_time
 {
 	SEC,
@@ -69,7 +80,7 @@ typedef struct s_philo
 	int			meals;
 	bool		full;
 	long		last_meal;
-	t_fork		*l_fork;
+	t_fork		*fork;
 	t_fork		*r_fork;
 	pthread_t	thread_id;
 	t_table		*table;

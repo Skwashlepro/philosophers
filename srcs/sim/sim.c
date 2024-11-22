@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:18:59 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/21 21:02:06 by luctan           ###   ########.fr       */
+/*   Updated: 2024/11/22 00:41:57 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	wait_thread(t_table *table)
 {
 	while (!bool_get(&table->table_mtx, &table->threads_ok))
 		;
-}
+} 
 
 void	sim_start(void *data)
 {
