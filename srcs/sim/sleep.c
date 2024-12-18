@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 21:02:28 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/18 03:11:46 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/18 21:50:44 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	print_stat(t_stat status, t_philo *philo, bool debug)
 		return ;
 	mutex_handle(&philo->table->prt_mtx, LOCK);
 	if (debug)
-		print_stat_debug(status, philo, elapsed);
+		;
 	else
 	{
-		if (status == FIRST_FORK || status == SECOND_FORK && !sim_end(philo->table))
+		if ((status == FIRST_FORK || status == SECOND_FORK) && !sim_end(philo->table))
 			printf("%ld\n %d took a fork\n", elapsed, philo->id);
 		else if (status == EATING)
 			printf("%ld\n %d is eating\n", elapsed, philo->id);
@@ -56,5 +56,5 @@ void	print_stat(t_stat status, t_philo *philo, bool debug)
 		else if (status == DEAD)
 			printf("%ld\n %d perished\n", elapsed, philo->id);
 	}
-	mutex_handle(&philo->table->prt_mtx, LOCK);
+	mutex_handle(&philo->table->prt_mtx, UNLOCK);
 }

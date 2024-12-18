@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:53:17 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/20 22:27:59 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/18 21:50:24 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@ void	init_db(t_table *table)
 {
 	int	i;
 
-	i -1;
+	i = -1;
 	table->end = false;
+	table->threads_ok = false;
 	table->philos = my_malloc(sizeof(t_philo) * table->nbrphil);
 	table->forks = my_malloc(sizeof(t_fork) * table->nbrphil);
 	mutex_handle(&table->table_mtx, INIT);
+	mutex_handle(&table->prt_mtx, INIT);
 	while (++i < table->nbrphil)
 	{
-		mutex_handle(&table->forks[i], INIT);
+		mutex_handle(&table->forks[i].fork, INIT);
 		table->forks[i].fork_id = i;
 	}
 	philo_init(table);
@@ -69,7 +71,6 @@ static void	atol_struct(t_table *table, char **av)
 
 void	db_init(t_table *table, char **av)
 {
-	init_db(table);
 	atol_struct(table, av);
-	sim_time(table);
+	init_db(table);
 }

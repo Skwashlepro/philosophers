@@ -1,16 +1,17 @@
 NAME		= philosophers
 LIB			= includes/libft/libft.a
-CFLAGS		= -Wall -Werror -Wextra
-# CFLAGS = -Wall -Werror -Wextra -g3
+#CFLAGS		= -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3
 CC			= cc
-VPATH		= ./srcs/:./srcs/db:./srcs/mem_utils:./srcs/mutex
+VPATH		= ./srcs/:./srcs/db:./srcs/mem_utils:./srcs/mutex:./srcs/sim
 LIBFT_PATH 	= ./includes/libft
 INC = -Iincludes/
 
 SRC_FILES	=	main \
 				db_init utils \
 				cleans exits \
-				mutex mutex_utils \
+				mutex mutex_utils threads\
+				sim_utils sim sleep \
 
 OBJ	= $(addsuffix .o, $(SRC_FILES))
 

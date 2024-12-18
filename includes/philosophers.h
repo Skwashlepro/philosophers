@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:36:49 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/18 03:20:48 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/18 20:46:04 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,12 @@ void	philo_init(t_table *table);
 void	bool_set(t_mutex *mutex, bool *dest, bool value);
 bool	bool_get(t_mutex *mutex, bool *value);
 long	long_get(t_mutex *mutex, long *value);
-long	long_set(t_mutex *mutex, long *dest, long value);
+void	long_set(t_mutex *mutex, long *dest, long value);
 bool	sim_end(t_table *table);
 void	wait_thread(t_table *table);
 long	timeset(t_time time);
 void	r_usleep(long usec, t_table *table);
 void	print_stat(t_stat status, t_philo *philo, bool debug);
+void	sim_init(t_table *table);
 
 #endif

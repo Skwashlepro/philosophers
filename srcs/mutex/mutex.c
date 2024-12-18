@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 21:33:24 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/21 23:39:48 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/18 21:48:31 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,23 @@ static void	mutex_error(int status, t_opcode code)
 	else if (EDEADLK == status)
 		exit_error("Deadlock error\n");
 	else if (EPERM == status)
-		error_exit("This thread does not hold a lock on mutex\n");
+		exit_error("This thread does not hold a lock on mutex\n");
 	else if (ENOMEM == status)
-		error_exit("Not enough memory left for a new thread\n");
+		exit_error("Not enough memory left for a new thread\n");
 	else if (EBUSY == status)
-		error_exit("Mutex is locked\n");
+		exit_error("Mutex is locked\n");
 }
 
 void	mutex_handle(t_mutex *mutex, t_opcode code)
 {
 	if (LOCK == code)
 		mutex_error(pthread_mutex_lock(mutex), code);
-	if (UNLOCK == code)
+	else if (UNLOCK == code)
 		mutex_error(pthread_mutex_unlock(mutex), code);
-	if (DESTROY == code)
+	else if (DESTROY == code)
 		mutex_error(pthread_mutex_destroy(mutex), code);
-	if (INIT == code)
+	else if (INIT == code)
 		mutex_error(pthread_mutex_init(mutex, NULL), code);
 	else
-		error_exit("Wrong opcode for mutex handling\n");
+		exit_error("Wrong opcode for mutex handling\n");
 }
