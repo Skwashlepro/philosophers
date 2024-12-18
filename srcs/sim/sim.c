@@ -6,11 +6,20 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:18:59 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/22 00:41:57 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/18 03:21:00 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+static void	eat(t_philo *philo)
+{
+	mutex_handle(&philo->fork1, LOCK);
+	print_stat(FIRST_FORK, philo, 0);
+	mutex_handle(&philo->fork2, LOCK);
+	print_stat(SECOND_FORK, philo, 0);
+	long_set(&phi)
+}
 
 void	wait_thread(t_table *table)
 {
@@ -30,7 +39,8 @@ void	sim_start(void *data)
 			break ;
 		eat(philo);
 		// sleep > status.
-		sleep(philo);
+		print_stat(ASLEEP, philo, 0);
+		r_usleep(philo->table->to_sleep, philo->table);
 		think(philo);
 	}
 }

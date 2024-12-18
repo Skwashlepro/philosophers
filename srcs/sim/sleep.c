@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 21:02:28 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/21 23:56:16 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/18 03:11:46 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	r_usleep(long usec, t_table *table)
 		cur_time = timeset(US) - start;
 		to_sleep = usec - cur_time;
 		if (cur_time > 1000)
-			usleep(usec / 2);
+			usleep(to_sleep / 2);
 		else
 			while (timeset(US) - start < usec)
 				;
@@ -40,10 +40,21 @@ void	print_stat(t_stat status, t_philo *philo, bool debug)
 	elapsed = timeset(MS);
 	if (philo->full)
 		return ;
-	thread_handle(&philo->thread_id, NULL, NULL, UNLOCK);
-	if (status == FIRST_FORK)
-		printf("%ld\n", "First fork taken");
-	else if (status == SECOND_FORK)
-		printf("%ls\n", "Second fork taken");
-	thread_handle(&philo->thread_id, NULL, NULL, UNLOCK);
+	mutex_handle(&philo->table->prt_mtx, LOCK);
+	if (debug)
+		print_stat_debug(status, philo, elapsed);
+	else
+	{
+		if (status == FIRST_FORK || status == SECOND_FORK && !sim_end(philo->table))
+			printf("%ld\n %d took a fork\n", elapsed, philo->id);
+		else if (status == EATING)
+			printf("%ld\n %d is eating\n", elapsed, philo->id);
+		else if (status == ASLEEP)
+			printf("%ld\n %d is asleep\n", elapsed, philo->id);
+		else if (status == THINKING)
+			printf("%ld\n %d is thinking\n", elapsed, philo->id);
+		else if (status == DEAD)
+			printf("%ld\n %d perished\n", elapsed, philo->id);
+	}
+	mutex_handle(&philo->table->prt_mtx, LOCK);
 }

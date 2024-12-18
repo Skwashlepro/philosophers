@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:36:49 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/21 23:57:05 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/18 03:20:48 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,11 @@ typedef struct s_philo
 	int			meals;
 	bool		full;
 	long		last_meal;
-	t_fork		*fork;
-	t_fork		*r_fork;
+	t_fork		*fork1;
+	t_fork		*fork2;
 	pthread_t	thread_id;
 	t_table		*table;
+	t_mutex		philo_mtx;
 
 }	t_philo;
 
@@ -99,6 +100,7 @@ struct s_table
 	bool		threads_ok;
 	t_mutex		table_mtx;
 	t_mutex		mtx_lock;
+	t_mutex		prt_mtx;
 	t_fork		*forks;
 	t_philo		*philos;
 };
@@ -118,6 +120,7 @@ long	long_set(t_mutex *mutex, long *dest, long value);
 bool	sim_end(t_table *table);
 void	wait_thread(t_table *table);
 long	timeset(t_time time);
-void	r_usleep(long usec, t_table *table)
+void	r_usleep(long usec, t_table *table);
+void	print_stat(t_stat status, t_philo *philo, bool debug);
 
 #endif
