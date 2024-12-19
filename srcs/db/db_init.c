@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:53:17 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/18 21:50:24 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/19 20:22:07 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_db(t_table *table)
 	table->threads_ok = false;
 	table->philos = my_malloc(sizeof(t_philo) * table->nbrphil);
 	table->forks = my_malloc(sizeof(t_fork) * table->nbrphil);
+	table->threads_count = 0;
 	mutex_handle(&table->table_mtx, INIT);
 	mutex_handle(&table->prt_mtx, INIT);
 	while (++i < table->nbrphil)

@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:53:20 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/18 20:44:06 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/19 20:29:43 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,28 @@ void	thread_handle(pthread_t *thread, void *(*foo)(void *), void *data,
 		thread_error(pthread_detach(*thread), opcode);
 	else
 		exit_error("Wrong opcode for thread handling\n");
+}
+void	long_iterate(t_mutex *mtx, long	*nb)
+{
+	mutex_handle(mtx, LOCK);
+	(*nb)++;
+	mutex_handle(mtx, UNLOCK);
+}
+
+void	wait_thread(t_table *table)
+{
+	while (!bool_get(&table->table_mtx, &table->threads_ok))
+		;
+} 
+
+bool	all_running(t_mutex *mutex, long *threads, long nbrphil)
+{
+	bool	ret;
+
+	ret = false;
+	mutex_handle(mutex, LOCK);
+	if (*threads = nbrphil)
+		ret = true;
+	mutex_handle(mutex, UNLOCK);
+	return (ret);
 }

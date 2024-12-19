@@ -1,4 +1,4 @@
-NAME		= philosophers
+NAME		= philo
 LIB			= includes/libft/libft.a
 #CFLAGS		= -Wall -Werror -Wextra
 CFLAGS = -Wall -Werror -Wextra -g3
