@@ -11,7 +11,7 @@ SRC_FILES	=	main \
 				db_init utils \
 				cleans exits \
 				mutex mutex_utils threads\
-				sim_utils sim sleep \
+				sim_utils sim sleep monitoring\
 
 OBJ	= $(addsuffix .o, $(SRC_FILES))
 

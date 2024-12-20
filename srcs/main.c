@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:41:19 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/18 21:55:17 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/20 03:45:10 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 	{
 		db_init(&table, av + 1);
 		sim_init(&table);
+		db_free(&table);
 	}
 	else
 		exit_error("Invalid number of arguments");

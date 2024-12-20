@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 21:15:40 by luctan            #+#    #+#             */
-/*   Updated: 2024/11/12 22:20:40 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/20 03:40:33 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,17 @@
 
 void	db_free(t_table *table)
 {
-	if (table)
+	t_philo	*philo;
+	int			i;
+
+	i = -1;
+	while (++i < table->nbrphil)
 	{
-		free(table);
-		table = NULL;
+		philo = table->philos + i;
+		mutex_handle(&philo->philo_mtx, DESTROY);
 	}
+	mutex_handle(&table->prt_mtx, DESTROY);
+	mutex_handle(&table->table_mtx, DESTROY);
+	free(table->forks);
+	free(table->philos);
 }

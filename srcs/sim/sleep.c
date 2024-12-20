@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 21:02:28 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/19 20:15:00 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/20 04:00:15 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	r_usleep(long usec, t_table *table)
 			break ;
 		cur_time = timeset(US) - start;
 		to_sleep = usec - cur_time;
-		if (cur_time > 1000)
+		if (cur_time > 1e3)
 			usleep(to_sleep / 2);
 		else
 			while (timeset(US) - start < usec)
@@ -33,28 +33,23 @@ void	r_usleep(long usec, t_table *table)
 	}
 }
 
-void	print_stat(t_stat status, t_philo *philo, bool debug)
+void	print_stat(t_stat status, t_philo *philo)
 {
 	long	elapsed;
 
-	elapsed = timeset(MS);
+	elapsed = timeset(MS) - philo->table->start;
 	if (philo->full)
 		return ;
 	mutex_handle(&philo->table->prt_mtx, LOCK);
-	if (debug)
-		;
-	else
-	{
-		if ((status == FIRST_FORK || status == SECOND_FORK) && !sim_end(philo->table))
-			printf("%ld\n %d took a fork\n", elapsed, philo->id);
-		else if (status == EATING)
-			printf("%ld\n %d is eating\n", elapsed, philo->id);
-		else if (status == ASLEEP)
-			printf("%ld\n %d is asleep\n", elapsed, philo->id);
-		else if (status == THINKING)
-			printf("%ld\n %d is thinking\n", elapsed, philo->id);
-		else if (status == DEAD)
-			printf("%ld\n %d perished\n", elapsed, philo->id);
-	}
+	if ((status == FIRST_FORK || status == SECOND_FORK) && !sim_end(philo->table))
+		printf("%ld %d took a fork\n", elapsed, philo->id);
+	else if (status == EATING)
+		printf("%ld %d is eating\n", elapsed, philo->id);
+	else if (status == ASLEEP)
+		printf("%ld %d is asleep\n", elapsed, philo->id);
+	else if (status == THINKING)
+		printf("%ld %d is thinking\n", elapsed, philo->id);
+	else if (status == DEAD)
+		printf("%ld %d perished\n", elapsed, philo->id);
 	mutex_handle(&philo->table->prt_mtx, UNLOCK);
 }

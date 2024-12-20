@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:53:20 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/19 20:29:43 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/20 02:33:19 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ bool	all_running(t_mutex *mutex, long *threads, long nbrphil)
 
 	ret = false;
 	mutex_handle(mutex, LOCK);
-	if (*threads = nbrphil)
+	if (*threads == nbrphil)
 		ret = true;
 	mutex_handle(mutex, UNLOCK);
 	return (ret);

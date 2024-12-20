@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 21:36:48 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/19 20:13:32 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/20 03:04:54 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ void	philo_init(t_table *table)
 	while (++i < table->nbrphil)
 	{
 		philo = table->philos + i;
-		philo->id = i;
+		philo->id = i + 1;
 		philo->full = false;
 		philo->meals = 0;
+		philo->last_meal = 0;
 		philo->table = table;
 		mutex_handle(&philo->philo_mtx, INIT);
 		assign_forks(philo, table->forks, i);
