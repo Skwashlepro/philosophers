@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 20:17:43 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/20 04:09:01 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/20 04:27:15 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,18 @@ void	*sim_monitor(void *data)
 		}
 	}
 	return (NULL);
+}
+
+void	fair_sys(t_philo *philo)
+{
+	if (philo->table->nbrphil % 2 == 0)
+	{
+		if (philo->id % 2 == 0)
+			r_usleep(30, philo->table);
+	}
+	else
+	{
+		if (philo->id % 2)
+			think(philo, true);
+	}
 }

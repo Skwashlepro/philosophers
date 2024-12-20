@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:36:49 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/20 03:59:21 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/20 04:27:09 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,4 +128,7 @@ void	sim_init(t_table *table);
 void	*sim_monitor(void *data);
 bool	all_running(t_mutex *mutex, long *threads, long nbrphil);
 void	long_iterate(t_mutex *mtx, long	*nb);
+void	think(t_philo *philo, bool bef);
+void	fair_sys(t_philo *philo);
+
 #endif

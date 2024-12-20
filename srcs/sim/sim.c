@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:18:59 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/20 04:00:13 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/20 04:27:44 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	*one_philo(void *arg)
 	long_iterate(&philo->table->table_mtx, &philo->table->threads_count);
 	print_stat(FIRST_FORK, philo);
 	while (!sim_end(philo->table))
-	{
 		usleep(200);
-	}
 	return (NULL);
 }
 
@@ -45,9 +43,22 @@ static void	eat(t_philo *philo)
 	mutex_handle(&philo->fork2->fork, UNLOCK);
 }
 
-static void	think(t_philo *philo)
+void	think(t_philo *philo, bool bef)
 {
-	print_stat(THINKING, philo);
+	long	eat;
+	long	sleep;
+	long	think;
+
+	if (!bef)
+		print_stat(THINKING, philo);
+	if (philo->table->nbrphil % 2 == 0)
+		return ;
+	eat = philo->table->to_eat;
+	sleep = philo->table->to_eat;
+	think = eat * 2 - sleep;
+	if (think < 0)
+		think = 0;
+	r_usleep(think * 0.50, philo->table);
 }
 
 void	*sim_start(void *data)
@@ -58,6 +69,7 @@ void	*sim_start(void *data)
 	wait_thread(philo->table);
 	long_set(&philo->philo_mtx, &philo->last_meal, timeset(MS));
 	long_iterate(&philo->table->table_mtx, &philo->table->threads_count);
+	fair_sys(philo);
 	while (!sim_end(philo->table))
 	{
 		if (philo->full)
@@ -65,7 +77,7 @@ void	*sim_start(void *data)
 		eat(philo);
 		print_stat(ASLEEP, philo);
 		r_usleep(philo->table->to_sleep, philo->table);
-		think(philo);
+		think(philo, false);
 	}
 	return (NULL);
 }
