@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 21:02:28 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/20 04:00:15 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/21 04:12:17 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	r_usleep(long usec, t_table *table)
 			break ;
 		cur_time = timeset(US) - start;
 		to_sleep = usec - cur_time;
-		if (cur_time > 1e3)
+		if (to_sleep > 1e3)
 			usleep(to_sleep / 2);
 		else
 			while (timeset(US) - start < usec)

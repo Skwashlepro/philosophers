@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:18:59 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/20 04:27:44 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/21 04:54:02 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*one_philo(void *arg)
 	long_iterate(&philo->table->table_mtx, &philo->table->threads_count);
 	print_stat(FIRST_FORK, philo);
 	while (!sim_end(philo->table))
-		usleep(200);
+		usleep(100);
 	return (NULL);
 }
 
@@ -45,20 +45,20 @@ static void	eat(t_philo *philo)
 
 void	think(t_philo *philo, bool bef)
 {
-	long	eat;
-	long	sleep;
-	long	think;
-
+	long	eat_t;
+	long	sleep_t;
+	long	think_t;
+	
 	if (!bef)
 		print_stat(THINKING, philo);
 	if (philo->table->nbrphil % 2 == 0)
 		return ;
-	eat = philo->table->to_eat;
-	sleep = philo->table->to_eat;
-	think = eat * 2 - sleep;
-	if (think < 0)
-		think = 0;
-	r_usleep(think * 0.50, philo->table);
+	eat_t = philo->table->to_eat;
+	sleep_t = philo->table->to_eat;
+	think_t = eat_t * 2 - sleep_t;
+	if (think_t < 0)
+		think_t = 0;
+	r_usleep(think_t * 0.30, philo->table);
 }
 
 void	*sim_start(void *data)
@@ -89,7 +89,7 @@ void	sim_init(t_table *table)
 	i = -1;
 	if (!table->nb_eat)
 		return ;
-	else if (table->nbrphil == 1)
+	if (table->nbrphil == 1)
 		thread_handle(&table->philos[0].thread_id, one_philo,
 			&table->philos[0], CREATE);
 	else
