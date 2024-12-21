@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 21:02:28 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/21 04:12:17 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/21 05:06:44 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void	print_stat(t_stat status, t_philo *philo)
 		return ;
 	mutex_handle(&philo->table->prt_mtx, LOCK);
 	if ((status == FIRST_FORK || status == SECOND_FORK) && !sim_end(philo->table))
-		printf("%ld %d took a fork\n", elapsed, philo->id);
-	else if (status == EATING)
+		printf("%ld %d has taken a fork\n", elapsed, philo->id);
+	else if (status == EATING && !sim_end(philo->table))
 		printf("%ld %d is eating\n", elapsed, philo->id);
-	else if (status == ASLEEP)
-		printf("%ld %d is asleep\n", elapsed, philo->id);
-	else if (status == THINKING)
+	else if (status == ASLEEP && !sim_end(philo->table))
+		printf("%ld %d is sleeping\n", elapsed, philo->id);
+	else if (status == THINKING && !sim_end(philo->table))
 		printf("%ld %d is thinking\n", elapsed, philo->id);
 	else if (status == DEAD)
-		printf("%ld %d perished\n", elapsed, philo->id);
+		printf("%ld %d is dead\n", elapsed, philo->id);
 	mutex_handle(&philo->table->prt_mtx, UNLOCK);
 }
