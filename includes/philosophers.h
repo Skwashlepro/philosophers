@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:36:49 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/20 04:27:09 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/23 02:55:23 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <errno.h>
-# include "libft/libft.h"
 // Reset
 # define RESET "\033[0m"
 

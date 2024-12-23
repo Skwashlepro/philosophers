@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 20:17:43 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/21 04:54:05 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/23 02:31:04 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static bool perished(t_philo *philo)
 	if (bool_get(&philo->philo_mtx, &philo->full))
 		return (false);
 	time = timeset(MS) - long_get(&philo->philo_mtx, &philo->last_meal);
-	to_die = (philo->table->to_die / 1e3);
+	to_die = (philo->table->to_die / 1000);
 	if (time > to_die)
 		return (true);
 	return (false);
@@ -54,7 +54,7 @@ void	fair_sys(t_philo *philo)
 	if (philo->table->nbrphil % 2 == 0)
 	{
 		if (philo->id % 2 == 0)
-			r_usleep(30, philo->table);
+			r_usleep(3e4, philo->table);
 	}
 	else
 	{

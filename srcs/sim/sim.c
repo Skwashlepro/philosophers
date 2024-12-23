@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:18:59 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/21 05:07:44 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/23 02:59:20 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	think(t_philo *philo, bool bef)
 	if (philo->table->nbrphil % 2 == 0)
 		return ;
 	eat_t = philo->table->to_eat;
-	sleep_t = philo->table->to_eat;
+	sleep_t = philo->table->to_sleep;
 	think_t = eat_t * 2 - sleep_t;
 	if (think_t < 0)
 		think_t = 0;
@@ -87,7 +87,7 @@ void	sim_init(t_table *table)
 	int	i;
 
 	i = -1;
-	if (!table->nb_eat)
+	if (table->nb_eat == 0)
 		return ;
 	if (table->nbrphil == 1)
 		thread_handle(&table->philos[0].thread_id, one_philo,

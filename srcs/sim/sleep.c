@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 21:02:28 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/21 05:06:44 by luctan           ###   ########.fr       */
+/*   Updated: 2024/12/23 02:33:43 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void	print_stat(t_stat status, t_philo *philo)
 	else if (status == THINKING && !sim_end(philo->table))
 		printf("%ld %d is thinking\n", elapsed, philo->id);
 	else if (status == DEAD)
-		printf("%ld %d is dead\n", elapsed, philo->id);
+		printf("%ld %d died\n", elapsed, philo->id);
 	mutex_handle(&philo->table->prt_mtx, UNLOCK);
 }
