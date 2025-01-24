@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:18:59 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/23 02:59:20 by luctan           ###   ########.fr       */
+/*   Updated: 2025/01/24 20:41:19 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*one_philo(void *arg)
 	long_iterate(&philo->table->table_mtx, &philo->table->threads_count);
 	print_stat(FIRST_FORK, philo);
 	while (!sim_end(philo->table))
-		usleep(100);
+		;
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:36:49 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/23 02:55:23 by luctan           ###   ########.fr       */
+/*   Updated: 2025/01/24 19:43:33 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,11 @@ struct s_table
 
 void	db_free(t_table *table);
 void	db_init(t_table *table, char **av);
-void	exit_error(const char *str);
 void	*my_malloc(size_t bytes);
 void	mutex_handle(t_mutex *mutex, t_opcode code);
 void	thread_handle(pthread_t *thread, void *(*foo)(void *), void *data,
 			t_opcode opcode);
+long	ft_atol2(const char *nb);
 void	philo_init(t_table *table);
 void	bool_set(t_mutex *mutex, bool *dest, bool value);
 bool	bool_get(t_mutex *mutex, bool *value);
@@ -129,5 +129,6 @@ bool	all_running(t_mutex *mutex, long *threads, long nbrphil);
 void	long_iterate(t_mutex *mtx, long	*nb);
 void	think(t_philo *philo, bool bef);
 void	fair_sys(t_philo *philo);
+int		inputchk(char **av);
 
 #endif

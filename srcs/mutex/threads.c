@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:53:20 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/20 02:33:19 by luctan           ###   ########.fr       */
+/*   Updated: 2025/01/24 20:45:26 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ void	thread_error(int status, t_opcode opcode)
 	if (status == 0)
 		return ;
 	if (EAGAIN == status)
-		exit_error("No resources for new thread \n");
+		printf("No resources for new thread \n");
 	else if (EPERM == status)
-		exit_error("Permission denied\n");
+		printf("Permission denied\n");
 	else if (EINVAL == status && CREATE == opcode)
-		exit_error("Value from attr is invalid\n");
+		printf("Value from attr is invalid\n");
 	else if (EINVAL == status && (JOIN == opcode || DETACH == opcode))
-		exit_error("Value from thread is invalid\n");
+		printf("Value from thread is invalid\n");
 	else if (ESRCH == status)
-		exit_error("No thread; thread id specified found");
+		printf("No thread; thread id specified found");
 	else if (EPERM == status)
-		exit_error("Deadlock or thread called is the calling thread");
+		printf("Deadlock or thread called is the calling thread");
 }
 
 void	thread_handle(pthread_t *thread, void *(*foo)(void *), void *data,
@@ -40,7 +40,7 @@ void	thread_handle(pthread_t *thread, void *(*foo)(void *), void *data,
 	else if (opcode == DETACH)
 		thread_error(pthread_detach(*thread), opcode);
 	else
-		exit_error("Wrong opcode for thread handling\n");
+		printf("Wrong opcode for thread handling\n");
 }
 void	long_iterate(t_mutex *mtx, long	*nb)
 {

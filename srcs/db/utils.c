@@ -6,37 +6,27 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:45:56 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/18 21:12:56 by luctan           ###   ########.fr       */
+/*   Updated: 2025/01/24 19:47:06 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-// long	ft_atol(char **nb)
-// {
-// 	long	n;
-// 	int		i;
-// 	int		sign;
-
-// 	sign = 1;
-// 	i = 0;
-// 	n = 0;
-// 	while (nb[1][i] == 32 || (nb[1][i] >= 9 && nb[1][i] <= 13))
-// 		i++;
-// 	if (nb[1][i] == '+' || nb[1][i] == '-')
-// 	{
-// 		if (nb[1][i] == '-')
-// 			sign = -1;
-// 		i++;
-// 	}
-// 	while (nb[1][i] && nb[1][i] >= '0' && nb[1][i] <= '9')
-// 	{
-// 		if (n > (LONG_MAX - (nb[1][i] - '0')) / 10)
-// 			nb_error(nb);
-// 		n = n * 10 + (nb[1][i++] - '0');
-// 	}
-// 	return (n * sign);
-// }
+int	inputchk(char **av)
+{
+	if (ft_atol2(av[1]) == -1)
+		return (1);
+	if (ft_atol2(av[2]) == -1)
+		return (1);
+	if (ft_atol2(av[3]) == -1)
+		return (1);
+	if (ft_atol2(av[4]) == -1)
+		return (1);
+	if (av[5])
+		if (ft_atol2(av[5]) == -1)
+			return (1);
+	return (0);
+}
 
 void	*my_malloc(size_t bytes)
 {
@@ -44,7 +34,7 @@ void	*my_malloc(size_t bytes)
 
 	all = malloc(bytes);
 	if (!all)
-		exit_error("MEMORY ERROR\n");
+		return (printf("MEMORY ERROR\n"), NULL);
 	return (all);
 }
 
@@ -53,14 +43,14 @@ long	timeset(t_time time)
 	struct timeval	tval;
 
 	if (gettimeofday(&tval, NULL))
-		exit_error("getting time of day failed\n");
-	if (SEC == time)
-		return (tval.tv_sec + (tval.tv_usec * 100000));
-	if (MS == time)
+		printf("getting time of day failed\n");
+	else if (SEC == time)
+		return (tval.tv_sec + (tval.tv_usec * 1000000));
+	else if (MS == time)
 		return ((tval.tv_sec * 1000) + (tval.tv_usec / 1000));
-	if (US == time)
-		return ((tval.tv_sec * 100000) + tval.tv_usec);
+	else if (US == time)
+		return ((tval.tv_sec * 1000000) + tval.tv_usec);
 	else
-		exit_error("time enum invalid\n");
+		printf("time enum invalid\n");
 	return (4242);
 }

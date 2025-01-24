@@ -8,7 +8,7 @@ INC = -Iincludes/
 
 SRC_FILES	=	main \
 				db_init utils \
-				cleans exits \
+				cleans \
 				mutex mutex_utils threads\
 				sim_utils sim sleep monitoring\
 

@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:53:17 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/23 02:40:04 by luctan           ###   ########.fr       */
+/*   Updated: 2025/01/24 19:39:28 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_db(t_table *table)
 	philo_init(table);
 }
 
-static long	ft_atol2(const char *nb)
+long	ft_atol2(const char *nb)
 {
 	long	n;
 	int		i;
@@ -46,13 +46,13 @@ static long	ft_atol2(const char *nb)
 	if (nb[i] == '+' || nb[i] == '-')
 	{
 		if (nb[i] == '-')
-			exit_error("Invalid parameters: Negative value are not supported\n");
+			return (-1);
 		i++;
 	}
 	while (nb[i] && nb[i] >= '0' && nb[i] <= '9')
 	{
 		if (n > (LONG_MAX - (nb[i] - '0')) / 10)
-			exit_error("Invalid parameters: Integer overflow\n");
+			return (-1);
 		n = n * 10 + (nb[i++] - '0');
 	}
 	return (n * sign);
