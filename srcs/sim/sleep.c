@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 21:02:28 by luctan            #+#    #+#             */
-/*   Updated: 2025/01/24 20:31:15 by luctan           ###   ########.fr       */
+/*   Updated: 2025/01/26 18:52:53 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	print_stat(t_stat status, t_philo *philo)
 	if (philo->full)
 		return ;
 	mutex_handle(&philo->table->prt_mtx, LOCK);
-	if ((status == FIRST_FORK || status == SECOND_FORK) && !sim_end(philo->table))
+	if ((status == FIRST_FORK || status == SECOND_FORK)
+		&& !sim_end(philo->table))
 		printf("%ld %d has taken a fork\n", elapsed, philo->id);
 	else if (status == EATING && !sim_end(philo->table))
 		printf("%ld %d is eating\n", elapsed, philo->id);

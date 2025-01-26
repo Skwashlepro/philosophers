@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 21:15:40 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/20 03:40:33 by luctan           ###   ########.fr       */
+/*   Updated: 2025/01/26 18:50:26 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	db_free(t_table *table)
 {
 	t_philo	*philo;
-	int			i;
+	int		i;
 
 	i = -1;
 	while (++i < table->nbrphil)

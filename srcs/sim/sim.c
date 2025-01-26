@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:18:59 by luctan            #+#    #+#             */
-/*   Updated: 2025/01/24 20:41:19 by luctan           ###   ########.fr       */
+/*   Updated: 2025/01/26 18:52:11 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	think(t_philo *philo, bool bef)
 	long	eat_t;
 	long	sleep_t;
 	long	think_t;
-	
+
 	if (!bef)
 		print_stat(THINKING, philo);
 	if (philo->table->nbrphil % 2 == 0)

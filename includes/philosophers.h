@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:36:49 by luctan            #+#    #+#             */
-/*   Updated: 2025/01/24 19:43:33 by luctan           ###   ########.fr       */
+/*   Updated: 2025/01/26 18:49:54 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef enum e_stat
 	FULL,
 	FIRST_FORK,
 	SECOND_FORK,
-	}	t_stat;
+}	t_stat;
 
 typedef enum e_time
 {

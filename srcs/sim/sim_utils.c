@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:29:08 by luctan            #+#    #+#             */
-/*   Updated: 2024/12/21 03:58:34 by luctan           ###   ########.fr       */
+/*   Updated: 2025/01/26 18:52:19 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	bool_set(t_mutex *mutex, bool *dest, bool value)
 bool	bool_get(t_mutex *mutex, bool *value)
 {
 	bool	ret;
-	
+
 	mutex_handle(mutex, LOCK);
 	ret = *value;
 	mutex_handle(mutex, UNLOCK);

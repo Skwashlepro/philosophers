@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:53:20 by luctan            #+#    #+#             */
-/*   Updated: 2025/01/24 20:45:26 by luctan           ###   ########.fr       */
+/*   Updated: 2025/01/26 23:28:19 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	thread_handle(pthread_t *thread, void *(*foo)(void *), void *data,
 	else
 		printf("Wrong opcode for thread handling\n");
 }
+
 void	long_iterate(t_mutex *mtx, long	*nb)
 {
 	mutex_handle(mtx, LOCK);
@@ -52,8 +53,8 @@ void	long_iterate(t_mutex *mtx, long	*nb)
 void	wait_thread(t_table *table)
 {
 	while (!bool_get(&table->table_mtx, &table->threads_ok))
-		;
-} 
+		usleep(500);
+}
 
 bool	all_running(t_mutex *mutex, long *threads, long nbrphil)
 {
