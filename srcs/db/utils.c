@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:45:56 by luctan            #+#    #+#             */
-/*   Updated: 2025/01/27 01:12:46 by luctan           ###   ########.fr       */
+/*   Updated: 2025/01/29 23:37:19 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ long	timeset(t_time time)
 	struct timeval	tval;
 
 	if (gettimeofday(&tval, NULL))
-		printf("getting time of day failed\n");
+		return (printf("getting time of day failed\n"), -1);
 	else if (SEC == time)
 		return (tval.tv_sec + (tval.tv_usec * 1000000));
 	else if (MS == time)
@@ -52,5 +52,5 @@ long	timeset(t_time time)
 		return ((tval.tv_sec * 1000000) + tval.tv_usec);
 	else
 		printf("time enum invalid\n");
-	return (4242);
+	return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:53:20 by luctan            #+#    #+#             */
-/*   Updated: 2025/01/27 01:30:16 by luctan           ###   ########.fr       */
+/*   Updated: 2025/01/30 00:22:44 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	long_iterate(t_mutex *mtx, long	*nb)
 void	wait_thread(t_table *table)
 {
 	while (!bool_get(&table->table_mtx, &table->threads_ok))
-		;
+		usleep(500);
 }
 
 bool	all_running(t_mutex *mutex, long *threads, long nbrphil)

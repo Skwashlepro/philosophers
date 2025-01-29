@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   monitoring.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 20:17:43 by luctan            #+#    #+#             */
-/*   Updated: 2025/01/27 01:09:20 by luctan           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "philosophers.h"
 
 static bool	perished(t_philo *philo)
@@ -34,7 +22,7 @@ void	*sim_monitor(void *data)
 	table = (t_table *)data;
 	while (!all_running(&table->table_mtx, &table->threads_count,
 			table->nbrphil))
-		;
+		usleep(500);
 	while (!sim_end(table))
 	{
 		i = -1;
