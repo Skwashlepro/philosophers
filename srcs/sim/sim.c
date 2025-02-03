@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:18:59 by luctan            #+#    #+#             */
-/*   Updated: 2025/02/03 23:31:45 by luctan           ###   ########.fr       */
+/*   Updated: 2025/02/04 00:14:35 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	think(t_philo *philo, bool bef)
 	think_t = eat_t * 2 - sleep_t;
 	if (think_t < 0)
 		think_t = 0;
-	r_usleep(think_t * 0.40, philo->table);
+	r_usleep(think_t * 0.30, philo->table);
 }
 
 void	*sim_start(void *data)
