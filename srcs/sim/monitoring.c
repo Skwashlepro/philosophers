@@ -34,6 +34,7 @@ void	*sim_monitor(void *data)
 				print_stat(DEAD, table->philos + i);
 			}
 		}
+		sleep(1000);
 	}
 	return (NULL);
 }
