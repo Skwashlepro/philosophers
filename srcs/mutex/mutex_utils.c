@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 21:36:48 by luctan            #+#    #+#             */
-/*   Updated: 2025/02/03 21:35:29 by luctan           ###   ########.fr       */
+/*   Updated: 2025/02/03 23:32:52 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	assign_forks(t_philo *philo, t_fork *forks, int i)
 	philo_nbr = philo->table->nbrphil;
 	philo->fork1 = &forks[(i + 1) % philo_nbr];
 	philo->fork2 = &forks[i];
-	if (!(philo->id % 2))
+	if ((philo->id % 2) == 0)
 	{
 		philo->fork1 = &forks[i];
 		philo->fork2 = &forks[(i + 1) % philo_nbr];
