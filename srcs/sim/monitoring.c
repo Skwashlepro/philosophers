@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   monitoring.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/03 21:43:04 by luctan            #+#    #+#             */
+/*   Updated: 2025/02/03 21:43:17 by luctan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 static bool	perished(t_philo *philo)
@@ -34,7 +46,7 @@ void	*sim_monitor(void *data)
 				print_stat(DEAD, table->philos + i);
 			}
 		}
-		usleep(7000);
+		usleep(5000);
 	}
 	return (NULL);
 }
