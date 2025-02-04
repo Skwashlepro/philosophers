@@ -6,7 +6,7 @@
 /*   By: luctan <luctan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 21:43:04 by luctan            #+#    #+#             */
-/*   Updated: 2025/02/03 23:35:22 by luctan           ###   ########.fr       */
+/*   Updated: 2025/02/04 14:06:18 by luctan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	*sim_monitor(void *data)
 				print_stat(DEAD, table->philos + i);
 			}
 		}
-		usleep(1000);
+		usleep(500);
 	}
 	return (NULL);
 }
